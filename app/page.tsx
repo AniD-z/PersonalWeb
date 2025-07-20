@@ -226,7 +226,7 @@ export default function Portfolio() {
               tags={["React.js", "Node.js", "Express.js", "MongoDB"]}
               image="/placeholder.svg?height=400&width=600"
               demoUrl="https://dbms-inky.vercel.app/"
-              repoUrl="https://github.com"
+              repoUrl="https://github.com/AniD-z/DBMS"
             />
             <ProjectCard
               title="Algorithmic Arcade"
@@ -234,7 +234,7 @@ export default function Portfolio() {
               tags={["React.js", "Node.js", "Data Structures", "Gamification"]}
               image="/placeholder.svg?height=400&width=600"
               demoUrl="https://dsa-full.vercel.app/"
-              repoUrl="https://github.com"
+              repoUrl="https://github.com/AniD-z/DSA_full"
             />
             <ProjectCard
               title="Distribution Management System"
@@ -257,8 +257,8 @@ export default function Portfolio() {
               description="This portfolio website built with Next.js and Tailwind CSS featuring modern animations and responsive design."
               tags={["Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"]}
               image="/placeholder.svg?height=400&width=600"
-              demoUrl="https://example.com"
-              repoUrl="https://github.com"
+              demoUrl="https://aniket-sage.vercel.app/"
+              repoUrl="https://github.com/AniD-z/PersonalWeb"
             />
           </div>
         </div>
