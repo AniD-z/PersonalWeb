@@ -213,7 +213,7 @@ export default function Portfolio() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
             <ProjectCard
-              title="Impact Analysis of Confidential Computing on B5G/6G"
+              title="Impact Analysis of Confidential Computing on B5G/6G (SAMSUNG)"
               description="Developed Confidential Computing solutions using Homomorphic Encryption, TEEs, and TPM 2.0 attestation for secure 5G networks and edge computing."
               tags={["Confidential Computing", "5G/6G", "TEE", "Samsung"]}
               image="/placeholder.svg?height=400&width=600"
@@ -253,12 +253,20 @@ export default function Portfolio() {
               repoUrl=""
             />
             <ProjectCard
-              title="Portfolio Website"
-              description="This portfolio website built with Next.js and Tailwind CSS featuring modern animations and responsive design."
-              tags={["Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"]}
+              title="Reverse SHell Attack"
+              description="This a replication of reverse shell attacks and analysis of the attack."
+              tags={["Metasploit", "powershell", "Netcat", "shell"]}
               image="/placeholder.svg?height=400&width=600"
-              demoUrl="https://aniket-sage.vercel.app/"
-              repoUrl="https://github.com/AniD-z/PersonalWeb"
+              demoUrl=""
+              repoUrl="https://github.com/AniD-z/Reverse_Shell_Backdoor"
+            />
+            <ProjectCard
+              title="Evil Twin "
+              description="This is a simulation of evil twin attack and its analysis."
+              tags={["Handshake", "aircrack-ng", "shell", "router"]}
+              image="/placeholder.svg?height=400&width=600"
+              demoUrl=""
+              repoUrl="https://github.com/AniD-z/Evil_Twin"
             />
           </div>
         </div>
