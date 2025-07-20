@@ -241,7 +241,7 @@ export default function Portfolio() {
               description="Wage calculation and disbursement system for factory workers based on actual working hours with security features."
               tags={["Management System", "Security", "Factory Automation"]}
               image="/placeholder.svg?height=400&width=600"
-              demoUrl=""
+              demoUrl="https://www.aarnpolymers.com/"
               repoUrl=""
             />
             <ProjectCard
