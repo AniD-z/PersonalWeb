@@ -1,6 +1,31 @@
 User-agent: *
 Allow: /
 
+# Explicitly allow AI crawlers
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: OpenAI-SearchBot
+Allow: /
+
+User-agent: AI2Bot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 # Sitemap
 Sitemap: https://anidz.app/sitemap.xml
 
@@ -14,5 +39,12 @@ Allow: /
 Allow: /blogs/
 Allow: /blogs/*
 
-# Crawl delay
+# Crawl delay for regular bots
 Crawl-delay: 1
+
+# Faster crawl for AI bots (they're usually more respectful)
+User-agent: ChatGPT-User
+Crawl-delay: 0.5
+
+User-agent: Claude-Web
+Crawl-delay: 0.5

@@ -11,24 +11,51 @@ import { Timeline } from "@/components/timeline"
 import { ContactForm } from "@/components/contact-form"
 import { NavBar } from "@/components/nav-bar"
 import { Footer } from "@/components/footer"
-import { MouseFollower } from "@/components/mouse-follower"
 import { ScrollProgress } from "@/components/scroll-progress"
 import { SectionHeading } from "@/components/section-heading"
 import { GlassmorphicCard } from "@/components/glassmorphic-card"
 import Loader from "@/components/Loader"
 import { EducationCard } from "@/components/education-card"
 import { AchievementCard } from "@/components/achievement-card"
+import { ErrorBoundary } from "@/components/error-boundary"
+import { useArcBrowser } from "@/hooks/use-arc-browser"
 
-export default function Portfolio() {
+function PortfolioContent() {
   const [isLoading, setIsLoading] = useState(true)
+  const [hasError, setHasError] = useState(false)
+  const { isArcBrowser, isClient } = useArcBrowser()
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 3000) // Show loader for 3 seconds
+    try {
+      const timer = setTimeout(() => {
+        setIsLoading(false)
+      }, isArcBrowser ? 1000 : 3000) // Faster loading for Arc browser
 
-    return () => clearTimeout(timer)
-  }, [])
+      return () => clearTimeout(timer)
+    } catch (error) {
+      console.error('Error in Portfolio component:', error)
+      setHasError(true)
+      setIsLoading(false)
+    }
+  }, [isArcBrowser])
+
+  // Error fallback for Arc browser
+  if (hasError) {
+    return (
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold mb-4">Aniket Kumar</h1>
+          <p className="text-xl text-gray-400 mb-8">Portfolio & Blog</p>
+          <a 
+            href="/blogs" 
+            className="inline-block px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+          >
+            View Blog
+          </a>
+        </div>
+      </div>
+    )
+  }
 
   if (isLoading) {
     return <Loader />
@@ -52,11 +79,20 @@ export default function Portfolio() {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-red-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-          <div className="absolute top-40 right-10 w-72 h-72 bg-yellow-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-          <div className="absolute bottom-20 left-1/3 w-72 h-72 bg-red-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-        </div>
+        {!isArcBrowser && (
+          <div className="absolute inset-0 z-0">
+            <div className="absolute top-20 left-10 w-72 h-72 bg-red-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+            <div className="absolute top-40 right-10 w-72 h-72 bg-yellow-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+            <div className="absolute bottom-20 left-1/3 w-72 h-72 bg-red-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+          </div>
+        )}
+        {isArcBrowser && (
+          <div className="absolute inset-0 z-0">
+            <div className="absolute top-20 left-10 w-72 h-72 bg-red-500/10 rounded-full filter blur-3xl"></div>
+            <div className="absolute top-40 right-10 w-72 h-72 bg-yellow-500/10 rounded-full filter blur-3xl"></div>
+            <div className="absolute bottom-20 left-1/3 w-72 h-72 bg-red-600/10 rounded-full filter blur-3xl"></div>
+          </div>
+        )}
 
         <div className="container relative z-10 text-center">
           <div className="space-y-6 max-w-4xl mx-auto">
@@ -459,5 +495,13 @@ export default function Portfolio() {
       {/* Footer */}
       <Footer />
     </div>
+  )
+}
+
+export default function Portfolio() {
+  return (
+    <ErrorBoundary>
+      <PortfolioContent />
+    </ErrorBoundary>
   )
 }

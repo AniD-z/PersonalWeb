@@ -45,7 +45,25 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' *.vercel-insights.com *.vercel.com; style-src 'self' 'unsafe-inline'; img-src 'self' i.ibb.co data: blob: *.vercel-storage.com; font-src 'self' data:; media-src 'self' *.vercel-storage.com blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; connect-src 'self' *.googleapis.com *.google.com *.vercel-insights.com *.vercel.com *.vercel-storage.com;",
+            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' *.vercel-insights.com *.vercel.com blob:; style-src 'self' 'unsafe-inline' blob:; img-src 'self' i.ibb.co data: blob: *.vercel-storage.com https:; font-src 'self' data: blob:; media-src 'self' *.vercel-storage.com blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; connect-src 'self' *.googleapis.com *.google.com *.vercel-insights.com *.vercel.com *.vercel-storage.com wss: ws:; worker-src 'self' blob:;",
+          },
+          {
+            key: 'X-Robots-Tag',
+            value: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+          },
+        ],
+      },
+      // Specific headers for AI crawlers
+      {
+        source: '/blogs/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=300, s-maxage=300, stale-while-revalidate=86400',
+          },
+          {
+            key: 'X-Robots-Tag',
+            value: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
           },
         ],
       },
