@@ -1,27 +1,32 @@
-# Creative Portfolio
+# Aniket Kumar - Personal Portfolio & Blog
 
-A modern and responsive creative portfolio built using [v0.dev](https://v0.dev) by Vercel.
+A modern and responsive personal portfolio and blog website showcasing my work as a Cybersecurity Expert and Full Stack Developer.
 
-![Creative Portfolio Preview](./preview.png)
+![Aniket Kumar Portfolio Preview](./preview.png)
 
 ## Live Demo
 
-Check out the live demo: [https://v0-creative-portfolio-o7.vercel.app/](https://v0-creative-portfolio-o7.vercel.app/)
+Check out the live website: [https://anidz.app](https://anidz.app)
 
 ## Features
 
-- Responsive design that works on all devices
-- Modern UI with smooth animations
-- Project showcase section
-- About me section
-- Contact information
-- Built with cutting-edge web technologies
+- 🎨 Responsive design that works on all devices
+- ⚡ Modern UI with smooth animations and transitions
+- 📝 Dynamic blog system with Google Sheets integration
+- 🛡️ Cybersecurity projects showcase
+- 💼 Professional portfolio sections
+- 📱 Mobile-first responsive design
+- 🔍 SEO optimized with structured data
+- 📊 Analytics integration
+- 🎯 Contact form with email integration
 
 ## Technologies Used
 
-- [Next.js](https://nextjs.org/) - The React framework for production
+- [Next.js 15](https://nextjs.org/) - The React framework for production
+- [TypeScript](https://www.typescriptlang.org/) - Type-safe JavaScript
 - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
-- [v0.dev](https://v0.dev) - AI-powered UI component generator
+- [Framer Motion](https://www.framer.com/motion/) - Production-ready motion library
+- [Google Sheets API](https://developers.google.com/sheets/api) - Dynamic content management
 - [Vercel](https://vercel.com) - Deployment platform
 
 ## Getting Started
@@ -30,7 +35,7 @@ To run this project locally, follow these steps:
 
 1. Clone the repository:
    \`\`\`bash
-   git clone https://github.com/shinekyaw/Creative-Portfolio.git
+   git clone https://github.com/AniD-z/PersonalWeb.git
    \`\`\`
 
 2. Navigate to the project directory:

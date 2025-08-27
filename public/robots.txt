@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://anidz.app/sitemap.xml
+
+# Specific rules
+Disallow: /api/
+Disallow: /.env*
+Disallow: /secret-admin-panel-xyz123/
+
+# Allow search engines to crawl the site
+Allow: /
+Allow: /blogs/
+Allow: /blogs/*
+
+# Crawl delay
+Crawl-delay: 1

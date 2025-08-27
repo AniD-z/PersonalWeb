@@ -6,7 +6,11 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Github, Linkedin, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-export function ModernNavbar() {
+interface NavBarProps {
+  navItems?: Array<{ name: string; href: string }>
+}
+
+export function NavBar({ navItems }: NavBarProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
@@ -19,26 +23,29 @@ export function ModernNavbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const navItems = [
-    { name: "About", href: "#about" },
-    
-    { name: "Projects", href: "#projects" },
-    { name: "Skills", href: "#skills" },
-    { name: "Experience", href: "#experience" },
-    { name: "Achievements", href: "#achievements" },
-    { name: "Education", href: "#education" },
-    { name: "Contact", href: "#contact" },
+  const defaultNavItems = [
+    { name: "Home", href: "/" },
+    { name: "About", href: "/#about" },
+    { name: "Projects", href: "/#projects" },
+    { name: "Skills", href: "/#skills" },
+    { name: "Experience", href: "/#experience" },
+    { name: "Achievements", href: "/#achievements" },
+    { name: "Education", href: "/#education" },
+    { name: "Blogs", href: "/blogs" },
+    { name: "Contact", href: "/#contact" },
   ]
+
+  const navigationItems = navItems || defaultNavItems
 
   // Trigger the resume download
   const handleDownloadResume = () => {
     const link = document.createElement("a")
-    link.href = "/data/resume.pdf" // Path to your resume in the public folder
+    link.href = "/data/Aniket_Resume.pdf"
     link.download = "Aniket_Resume.pdf"
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
-    setIsOpen(false) // Close the mobile menu after clicking
+    setIsOpen(false)
   }
 
   const handleNavClick = () => setIsOpen(false)
@@ -50,24 +57,24 @@ export function ModernNavbar() {
       {/* Desktop & Mobile Header */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? "bg-black/90 backdrop-blur-md border-b border-red-500/20" : "bg-transparent"
+          isScrolled ? "bg-black/90 backdrop-blur-md border-b border-emerald-500/20" : "bg-transparent"
         }`}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link href="/" className="font-bold text-xl z-50 relative">
-              <span className="bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">Aniket</span>
+              <span className="bg-gradient-to-r from-emerald-500 to-green-700 bg-clip-text text-transparent">Aniket</span>
               <span className="text-white">K</span>
             </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
-              {navItems.map((item) => (
+              {navigationItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-white hover:text-red-500 transition-colors duration-200 font-medium"
+                  className="text-white hover:text-emerald-500 transition-colors duration-200 font-medium"
                 >
                   {item.name}
                 </Link>
@@ -75,7 +82,7 @@ export function ModernNavbar() {
               <Button
                 size="sm"
                 onClick={handleDownloadResume}
-                className="bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 text-white border-0"
+                className="bg-gradient-to-r from-emerald-500 to-green-700 hover:from-emerald-600 hover:to-green-800 text-white border-0"
               >
                 Download Resume
               </Button>
@@ -84,7 +91,7 @@ export function ModernNavbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden z-50 relative p-2 text-white hover:text-red-500 transition-colors"
+              className="md:hidden z-50 relative p-2 text-white hover:text-emerald-500 transition-colors"
               aria-label="Toggle menu"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -113,12 +120,12 @@ export function ModernNavbar() {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 left-0 h-full w-[60%] bg-black border-r border-red-500/20 z-50 md:hidden"
+              className="fixed top-0 left-0 h-full w-[60%] bg-black border-r border-emerald-500/20 z-50 md:hidden"
             >
               <div className="flex flex-col h-full pt-20 px-6">
                 {/* Navigation Links */}
                 <nav className="flex flex-col space-y-6">
-                  {navItems.map((item, index) => (
+                  {navigationItems.map((item, index) => (
                     <motion.div
                       key={item.name}
                       initial={{ opacity: 0, x: -20 }}
@@ -128,7 +135,7 @@ export function ModernNavbar() {
                       <Link
                         href={item.href}
                         onClick={handleNavClick}
-                        className="text-white hover:text-red-500 transition-colors duration-200 text-lg font-medium block py-2"
+                        className="text-white hover:text-emerald-500 transition-colors duration-200 text-lg font-medium block py-2"
                       >
                         {item.name}
                       </Link>
@@ -145,7 +152,7 @@ export function ModernNavbar() {
                 >
                   <Button
                     onClick={handleDownloadResume}
-                    className="w-full bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 text-white border-0"
+                    className="w-full bg-gradient-to-r from-emerald-500 to-green-700 hover:from-emerald-600 hover:to-green-800 text-white border-0"
                   >
                     Download Resume
                   </Button>
@@ -164,7 +171,7 @@ export function ModernNavbar() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={handleNavClick}
-                      className="p-2 text-white hover:text-red-500 transition-colors"
+                      className="p-2 text-white hover:text-emerald-500 transition-colors"
                     >
                       <Github size={20} />
                     </Link>
@@ -173,14 +180,14 @@ export function ModernNavbar() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={handleNavClick}
-                      className="p-2 text-white hover:text-red-500 transition-colors"
+                      className="p-2 text-white hover:text-emerald-500 transition-colors"
                     >
                       <Linkedin size={20} />
                     </Link>
                     <Link
                       href="mailto:aniketkumar0x45@gmail.com"
                       onClick={handleNavClick}
-                      className="p-2 text-white hover:text-red-500 transition-colors"
+                      className="p-2 text-white hover:text-emerald-500 transition-colors"
                     >
                       <Mail size={20} />
                     </Link>

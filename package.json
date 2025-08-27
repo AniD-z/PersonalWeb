@@ -1,7 +1,10 @@
 {
-  "name": "my-v0-project",
-  "version": "0.1.0",
+  "name": "aniket-kumar-portfolio",
+  "version": "1.0.0",
   "private": true,
+  "description": "Personal portfolio and blog of Aniket Kumar - Cybersecurity Expert and Full Stack Developer",
+  "author": "Aniket Kumar <aniketkumar0x45@gmail.com>",
+  "homepage": "https://anidz.app",
   "scripts": {
     "build": "next build",
     "dev": "next dev",
