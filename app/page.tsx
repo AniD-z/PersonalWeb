@@ -69,15 +69,21 @@ export default function Portfolio() {
             <p className="text-xl text-zinc-400 max-w-[600px] mx-auto">
               I craft exceptional digital experiences with code, creativity, and a passion for innovation.
             </p>
-            <div className="flex justify-center pt-4">
-  <Button className="relative overflow-hidden group bg-gradient-to-r from-red-500 to-red-700 border-0">
-    <Link href="#projects" className="relative z-10 flex items-center font-bold text-white">
-      View Projects
-      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-    </Link>
-    <span className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-800 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-  </Button>
-</div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+              <Button className="relative overflow-hidden group bg-gradient-to-r from-red-500 to-red-700 border-0">
+                <Link href="#projects" className="relative z-10 flex items-center font-bold text-white">
+                  View Projects
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+                <span className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-800 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              </Button>
+              <Button variant="outline" className="relative overflow-hidden group border-2 border-red-500 text-red-400 hover:bg-red-500 hover:text-white">
+                <Link href="/blogs" className="relative z-10 flex items-center font-bold">
+                  View My Blogs
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </Button>
+            </div>
             <div className="flex gap-4 pt-4 justify-center">
               <Link href="https://github.com/AniD-z" target="_blank" rel="noopener noreferrer">
                 <Button
