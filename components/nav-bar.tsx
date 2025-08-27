@@ -27,10 +27,7 @@ export function NavBar({ navItems }: NavBarProps) {
     { name: "Home", href: "/" },
     { name: "About", href: "/#about" },
     { name: "Projects", href: "/#projects" },
-    { name: "Skills", href: "/#skills" },
     { name: "Experience", href: "/#experience" },
-    { name: "Achievements", href: "/#achievements" },
-    { name: "Education", href: "/#education" },
     { name: "Blogs", href: "/blogs" },
     { name: "Contact", href: "/#contact" },
   ]

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react"
+import { ArrowRight, Github, Linkedin, Mail, Shield, Code, Gamepad2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { ProjectCard } from "@/components/project-card"
@@ -67,17 +67,23 @@ export default function Portfolio() {
               </span>
             </h1>
             <p className="text-xl text-zinc-400 max-w-[600px] mx-auto">
-              I craft exceptional digital experiences with code, creativity, and a passion for innovation.
+              I craft exceptional digital experiences with code, creativity, and a passion for innovation. Sharing insights on network security, web development, and game-based learning.
             </p>
-            <div className="flex justify-center pt-4">
-  <Button className="relative overflow-hidden group bg-gradient-to-r from-red-500 to-red-700 border-0">
-    <Link href="#projects" className="relative z-10 flex items-center font-bold text-white">
-      View Projects
-      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-    </Link>
-    <span className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-800 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-  </Button>
-</div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+              <Button className="relative overflow-hidden group bg-gradient-to-r from-red-500 to-red-700 border-0">
+                <Link href="#projects" className="relative z-10 flex items-center font-bold text-white">
+                  View Projects
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+                <span className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-800 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              </Button>
+              <Button variant="outline" className="border-zinc-600 text-zinc-300 hover:bg-zinc-800 hover:text-white">
+                <Link href="/blogs" className="flex items-center font-bold">
+                  Read My Blog
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </Button>
+            </div>
             <div className="flex gap-4 pt-4 justify-center">
               <Link href="https://github.com/AniD-z" target="_blank" rel="noopener noreferrer">
                 <Button
@@ -162,7 +168,7 @@ export default function Portfolio() {
                 </p>
                 <p className="text-sm md:text-base lg:text-lg text-zinc-300 mt-4">
                   When I'm not coding, you can find me exploring new technologies, leading my game development team, and
-                  contributing to research in network security and educational technology.
+                  contributing to research in network security and educational technology. I regularly share my insights and learnings through my <Link href="/blogs" className="text-red-400 hover:text-red-300 underline underline-offset-2">technical blog</Link>, covering topics from network security to modern web development.
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
@@ -389,6 +395,92 @@ export default function Portfolio() {
               period="2019 - 2020"
               type="school"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Section */}
+      <section id="blog" className="py-32 relative">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+          <div className="absolute bottom-1/3 right-1/3 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+        </div>
+
+        <div className="container relative z-10">
+          <SectionHeading title="Latest Blog Posts" subtitle="Thoughts on tech, security, and innovation" />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+            <GlassmorphicCard className="group hover:scale-105 transition-all duration-300">
+              <div className="space-y-4">
+                <div className="w-full h-48 bg-gradient-to-br from-red-500/20 to-red-600/20 rounded-lg border border-zinc-800 flex items-center justify-center">
+                  <div className="text-center space-y-2">
+                    <Shield className="h-12 w-12 text-red-400 mx-auto" />
+                    <h4 className="text-lg font-semibold">Network Security</h4>
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold group-hover:text-red-400 transition-colors">
+                  Understanding Confidential Computing in 5G Networks
+                </h3>
+                <p className="text-zinc-400 text-sm">
+                  Exploring the implementation of TEEs and homomorphic encryption for secure edge computing...
+                </p>
+                <div className="flex items-center justify-between pt-4">
+                  <span className="text-xs text-zinc-500">Network Security</span>
+                  <ArrowRight className="h-4 w-4 text-red-400 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </GlassmorphicCard>
+
+            <GlassmorphicCard className="group hover:scale-105 transition-all duration-300">
+              <div className="space-y-4">
+                <div className="w-full h-48 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-lg border border-zinc-800 flex items-center justify-center">
+                  <div className="text-center space-y-2">
+                    <Code className="h-12 w-12 text-blue-400 mx-auto" />
+                    <h4 className="text-lg font-semibold">Web Development</h4>
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold group-hover:text-blue-400 transition-colors">
+                  Building Modern React Applications with Next.js 15
+                </h3>
+                <p className="text-zinc-400 text-sm">
+                  Best practices for performance optimization and developer experience in modern web apps...
+                </p>
+                <div className="flex items-center justify-between pt-4">
+                  <span className="text-xs text-zinc-500">Web Development</span>
+                  <ArrowRight className="h-4 w-4 text-blue-400 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </GlassmorphicCard>
+
+            <GlassmorphicCard className="group hover:scale-105 transition-all duration-300">
+              <div className="space-y-4">
+                <div className="w-full h-48 bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 rounded-lg border border-zinc-800 flex items-center justify-center">
+                  <div className="text-center space-y-2">
+                    <Gamepad2 className="h-12 w-12 text-emerald-400 mx-auto" />
+                    <h4 className="text-lg font-semibold">Game Development</h4>
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold group-hover:text-emerald-400 transition-colors">
+                  Game-Based Learning: The Future of Education
+                </h3>
+                <p className="text-zinc-400 text-sm">
+                  How gamification is transforming technical education and making complex concepts accessible...
+                </p>
+                <div className="flex items-center justify-between pt-4">
+                  <span className="text-xs text-zinc-500">Education Tech</span>
+                  <ArrowRight className="h-4 w-4 text-emerald-400 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </GlassmorphicCard>
+          </div>
+
+          <div className="text-center mt-12">
+            <Button className="bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105">
+              <Link href="/blogs" className="flex items-center gap-2">
+                View All Blog Posts
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
