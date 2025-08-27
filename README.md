@@ -2,8 +2,6 @@
 
 A modern and responsive personal portfolio and blog website showcasing my work as a Cybersecurity Expert and Full Stack Developer.
 
-![Aniket Kumar Portfolio Preview](./preview.png)
-
 ## Live Demo
 
 Check out the live website: [https://anidz.app](https://anidz.app)
