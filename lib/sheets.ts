@@ -231,3 +231,30 @@ export async function updatePostStatus(slug: string, status: "draft" | "publishe
     throw new Error("Failed to update post status")
   }
 }
+
+export async function getLatestPosts(limit: number = 3, excludeSlug?: string): Promise<LightweightBlogPost[]> {
+  // Check cache first
+  const cacheKey = `latest_posts_${limit}_${excludeSlug || 'none'}`
+  const cached = blogCache.get<LightweightBlogPost[]>(cacheKey)
+  if (cached) {
+    return cached
+  }
+
+  try {
+    const posts = await getLightweightPosts()
+    
+    // Filter published posts, exclude current post if specified, sort by created_at (newest first), and take the limit
+    const latestPosts = posts
+      .filter(post => post.status === "published" && (!excludeSlug || post.slug !== excludeSlug))
+      .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+      .slice(0, limit)
+
+    // Cache the results
+    blogCache.set(cacheKey, latestPosts, 300000) // 5 minutes cache
+    safeLog(`✅ Cached ${latestPosts.length} latest posts`)
+
+    return latestPosts
+  } catch (error) {
+    throw error
+  }
+}

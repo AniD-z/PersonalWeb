@@ -119,18 +119,18 @@ export default async function BlogIndex({ searchParams }: BlogIndexProps) {
               {/* Side Featured Articles */}
               <div className="space-y-4 flex flex-col">
                 {posts.slice(1, 3).map((post, index) => (
-                  <article key={post.slug} className="group bg-background/80 backdrop-blur-md rounded-lg overflow-hidden border border-gray-800/50 hover:border-emerald-500/60 transition-all duration-300 flex-grow hover:shadow-lg hover:shadow-emerald-500/10">
-                    <Link href={`/blogs/${post.slug}`} className="flex h-full">
-                      <div className="relative w-32 flex-shrink-0 overflow-hidden">
+                  <article key={post.slug} className="group bg-background/70 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-800/60 hover:border-emerald-500/60 transition-all duration-300 flex-grow hover:shadow-lg hover:shadow-emerald-500/10">
+                    <Link href={`/blogs/${post.slug}`} className="flex gap-4 p-4 h-full">
+                      <div className="relative w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden">
                         <Image
                           src={post.hero_image || "/placeholder.svg"}
                           alt={post.title}
                           fill
                           className="object-cover group-hover:scale-110 transition-transform duration-300"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-transparent"></div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-transparent"></div>
                       </div>
-                      <div className="flex-1 space-y-2 flex flex-col p-4 bg-gradient-to-b from-gray-900/90 to-gray-800/90">
+                      <div className="flex-1 space-y-2 flex flex-col">
                         <div className="flex items-center gap-2 text-xs">
                           <span className="w-6 h-6 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center font-bold text-xs">{index + 2}</span>
                           <span className="text-gray-400">•</span>
@@ -166,7 +166,7 @@ export default async function BlogIndex({ searchParams }: BlogIndexProps) {
           
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {posts.slice(3).map((post) => (
-              <article key={post.slug} className="group bg-background/80 backdrop-blur-md rounded-xl shadow-xl overflow-hidden border border-gray-800/50 hover:border-emerald-500/50 transition-all duration-500 flex flex-col hover:shadow-emerald-500/20">
+              <article key={post.slug} className="group bg-background/80 rounded-xl shadow-lg overflow-hidden border border-gray-800 hover:border-emerald-500 transition-all duration-300 flex flex-col">
                 <Link href={`/blogs/${post.slug}`} className="block flex-grow">
                   <div className="relative w-full h-48 overflow-hidden">
                     <Image

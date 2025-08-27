@@ -1,12 +1,17 @@
 import Image from "next/image"
+import Link from "next/link"
 import type { BlogPost } from "@/types/blog"
 import { Breadcrumbs } from "./breadcrumbs"
+import { getLatestPosts } from "@/lib/sheets"
 
 interface BlogContentProps {
   post: BlogPost
 }
 
-export function BlogContent({ post }: BlogContentProps) {
+export async function BlogContent({ post }: BlogContentProps) {
+  // Fetch latest posts excluding the current post
+  const latestPosts = await getLatestPosts(3, post.slug)
+
   // Parse main modules by splitting on ## headings
   const parseMainModules = (content: string) => {
     const sections = content.split(/(?=##\s)/).filter((section) => section.trim())
@@ -190,15 +195,94 @@ export function BlogContent({ post }: BlogContentProps) {
           </div>
         </section>
 
-        {/* Links Section */}
-        {linksItems.length > 0 && (
+        {/* Links Section - Enhanced with Latest Posts */}
+        {(linksItems.length > 0 || latestPosts.length > 0) && (
           <section className="mb-12 p-6 bg-gray-800/40 backdrop-blur-sm rounded-xl border border-gray-700/50">
-            <h2 className="text-xl font-bold mb-4 text-emerald-400">Useful Links</h2>
-            <ul className="space-y-2">
-              {linksItems.map((link, index) => (
-                <li key={index} className="text-gray-300" dangerouslySetInnerHTML={{ __html: link }} />
-              ))}
-            </ul>
+            <h2 className="text-xl font-bold mb-6 text-emerald-400 flex items-center gap-2">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+              </svg>
+              Useful Links
+            </h2>
+            
+            <div className="space-y-6">
+              {/* Latest Blog Posts */}
+              {latestPosts.length > 0 && (
+                <div>
+                  <h3 className="text-lg font-semibold mb-4 text-cyan-400 flex items-center gap-2">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                    </svg>
+                    Latest Blog Posts
+                  </h3>
+                  <div className="grid gap-3">
+                    {latestPosts.map((latestPost) => (
+                      <Link 
+                        key={latestPost.slug}
+                        href={`/blogs/${latestPost.slug}`}
+                        className="group block p-4 bg-gray-700/30 hover:bg-gray-700/50 rounded-lg border border-gray-600/50 hover:border-cyan-500/50 transition-all duration-300"
+                      >
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1">
+                            <h4 className="font-medium text-white group-hover:text-cyan-400 transition-colors line-clamp-2 mb-2">
+                              {latestPost.title}
+                            </h4>
+                            <div className="flex items-center gap-4 text-sm text-gray-400">
+                              <span className="px-2 py-1 bg-cyan-500/20 text-cyan-300 rounded text-xs font-medium">
+                                {latestPost.category}
+                              </span>
+                              <span>
+                                {new Date(latestPost.created_at).toLocaleDateString('en-US', {
+                                  month: 'short',
+                                  day: 'numeric',
+                                  year: 'numeric'
+                                })}
+                              </span>
+                            </div>
+                          </div>
+                          <svg className="w-4 h-4 text-gray-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* External Links from Google Sheets */}
+              {linksItems.length > 0 && (
+                <div>
+                  <h3 className="text-lg font-semibold mb-4 text-emerald-400 flex items-center gap-2">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                    External Resources
+                  </h3>
+                  <ul className="space-y-2">
+                    {linksItems.map((link, index) => (
+                      <li key={index} className="text-gray-300 hover:text-white transition-colors" dangerouslySetInnerHTML={{ __html: link }} />
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* View All Blogs Link */}
+              <div className="pt-4 border-t border-gray-700/50">
+                <Link 
+                  href="/blogs"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                  </svg>
+                  View All Blog Posts
+                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
           </section>
         )}
 
