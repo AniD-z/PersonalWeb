@@ -119,24 +119,24 @@ export default async function BlogIndex({ searchParams }: BlogIndexProps) {
               {/* Side Featured Articles */}
               <div className="space-y-4 flex flex-col">
                 {posts.slice(1, 3).map((post, index) => (
-                  <article key={post.slug} className="group bg-background/70 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-800/60 hover:border-emerald-500/60 transition-all duration-300 flex-grow hover:shadow-lg hover:shadow-emerald-500/10">
-                    <Link href={`/blogs/${post.slug}`} className="flex gap-4 p-4 h-full">
-                      <div className="relative w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden">
+                  <article key={post.slug} className="group bg-gradient-to-b from-gray-900/90 to-gray-800/90 backdrop-blur-md rounded-xl shadow-xl overflow-hidden border border-gray-800/50 hover:border-emerald-500/50 transition-all duration-500 flex flex-col hover:shadow-emerald-500/20">
+                    <Link href={`/blogs/${post.slug}`} className="flex gap-4 p-0 h-32 min-h-[8rem]">
+                      <div className="relative w-32 h-full flex-shrink-0 rounded-l-xl overflow-hidden">
                         <Image
                           src={post.hero_image || "/placeholder.svg"}
                           alt={post.title}
                           fill
-                          className="object-cover group-hover:scale-110 transition-transform duration-300"
+                          className="object-cover h-full w-full group-hover:scale-110 transition-transform duration-300"
                         />
                         <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-transparent"></div>
                       </div>
-                      <div className="flex-1 space-y-2 flex flex-col">
+                      <div className="flex-1 space-y-2 flex flex-col justify-between p-4">
                         <div className="flex items-center gap-2 text-xs">
-                          <span className="w-6 h-6 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center font-bold text-xs">{index + 2}</span>
+                          <span className="w-6 h-6 bg-emerald-500/20 text-emerald-300 rounded-full flex items-center justify-center font-bold text-xs">{index + 2}</span>
                           <span className="text-gray-400">•</span>
                           <span className="text-emerald-300 font-medium">{post.category}</span>
                         </div>
-                        <h4 className="font-semibold group-hover:text-emerald-400 transition-colors line-clamp-2 text-sm flex-grow text-white">
+                        <h4 className="font-semibold group-hover:text-emerald-400 transition-colors line-clamp-2 text-base flex-grow text-white">
                           {post.h1_title || post.title}
                         </h4>
                         <time className="text-xs text-emerald-400 mt-auto font-medium">
